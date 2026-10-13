@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="fr">
 <head>
@@ -5,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090b12">
   <meta name="description" content="JOSH Labs transforme les idées en impact grâce aux produits numériques, aux logiciels et à l'intelligence artificielle.">
+  <meta name="referrer" content="origin">
   <title>JOSH Labs — Des idées à l’impact.</title>
 
   <style>
@@ -103,9 +105,6 @@
       color:#aab9d1;
       font-size:17px;
     }
-
-    /* Le moteur Google reste invisible.
-       L'utilisateur utilise notre propre liste de langues. */
 
     #google_translate_element {
       position:absolute!important;
@@ -210,6 +209,25 @@
       transform:none;
     }
 
+    .btn.primary {
+      background:linear-gradient(110deg,var(--blue),var(--violet));
+      color:white;
+      border:0;
+      box-shadow:0 12px 34px #4d66ed33;
+    }
+
+    .btn.secondary {
+      border:1px solid var(--line);
+      color:var(--text);
+      background:transparent;
+    }
+
+    .btn.whatsapp {
+      background:#168b55;
+      color:#fff;
+      border:1px solid #35c98355;
+    }
+
     /* HERO */
 
     .hero {
@@ -274,19 +292,6 @@
       gap:12px;
       flex-wrap:wrap;
       margin-top:32px;
-    }
-
-    .btn.primary {
-      background:linear-gradient(110deg,var(--blue),var(--violet));
-      color:white;
-      border:0;
-      box-shadow:0 12px 34px #4d66ed33;
-    }
-
-    .btn.secondary {
-      border:1px solid var(--line);
-      color:var(--text);
-      background:transparent;
     }
 
     .proof {
@@ -503,6 +508,29 @@
       margin-bottom:0;
     }
 
+    .contact-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      flex-shrink:0;
+    }
+
+    .contact-details {
+      margin-top:16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 20px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .contact-details a {
+      color:#a9c5ff;
+      overflow-wrap:anywhere;
+    }
+
+    .contact-details a:hover { color:white; }
+
     /* MODALE DE CONTACT */
 
     .modal {
@@ -648,6 +676,20 @@
       border:1px solid #ff777744;
     }
 
+    .whatsapp-note {
+      margin-top:17px;
+      padding-top:15px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+
+    .whatsapp-note a {
+      color:#75e5a8;
+      font-weight:700;
+    }
+
     /* PIED DE PAGE */
 
     footer {
@@ -665,13 +707,9 @@
       flex-wrap:wrap;
     }
 
-    .back-top {
-      color:#a7baff;
-    }
+    .back-top { color:#a7baff; }
 
     .back-top:hover { color:white; }
-
-    /* RESPONSIVE */
 
     @media(max-width:760px) {
       .links { display:none; }
@@ -691,7 +729,7 @@
         row-gap:20px;
       }
       .contact { padding:28px; display:block; }
-      .contact .btn { margin-top:20px; }
+      .contact-actions { margin-top:20px; }
       .proof { gap:14px; }
       .nav { min-height:68px; }
       .brand { font-size:18px; }
@@ -738,7 +776,6 @@
     </div>
   </div>
 
-  <!-- Le moteur de traduction est caché derrière notre liste -->
   <div id="google_translate_element" aria-hidden="true"></div>
 
   <header class="wrap nav">
@@ -896,11 +933,36 @@
           <div class="kicker">Parlons de votre projet</div>
           <h2>Une idée qui mérite d’être créée ?</h2>
           <p>Présentez-nous votre projet. Nous serons heureux d’en discuter.</p>
+
+          <div class="contact-details">
+            <span>
+              E-mail :
+              <a href="mailto:jokal.management@gmail.com">
+                jokal.management@gmail.com
+              </a>
+            </span>
+
+            <span>
+              WhatsApp :
+              <a href="https://wa.me/243890074551"
+                 target="_blank" rel="noopener noreferrer">
+                +243 890 074 551
+              </a>
+            </span>
+          </div>
         </div>
 
-        <button class="btn primary" type="button" data-open-contact>
-          Nous contacter ↗
-        </button>
+        <div class="contact-actions">
+          <button class="btn primary" type="button" data-open-contact>
+            Envoyer un e-mail ↗
+          </button>
+
+          <a class="btn whatsapp"
+             href="https://wa.me/243890074551"
+             target="_blank" rel="noopener noreferrer">
+            WhatsApp ↗
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -942,7 +1004,28 @@
         astérisque sont obligatoires.
       </p>
 
-      <form id="contactForm">
+      <!--
+        Envoi direct par POST à FormSubmit.
+        Ne pas remettre l'ancien gestionnaire JavaScript fetch().
+      -->
+      <form
+        id="contactForm"
+        action="https://formsubmit.co/jokal.management@gmail.com"
+        method="POST"
+      >
+        <input type="hidden" name="_subject"
+               value="Nouveau message reçu — JOSH Labs">
+
+        <input type="hidden" name="_template" value="table">
+
+        <input type="hidden" name="_next"
+               value="https://joshkal740-ai.github.io/josh-labs/?contact=sent#contact">
+
+        <input type="text" name="_honey"
+               tabindex="-1" autocomplete="off"
+               aria-hidden="true"
+               style="position:absolute;left:-9999px;width:1px;height:1px;">
+
         <div class="form-grid">
           <div class="field">
             <label for="contactName">Nom complet *</label>
@@ -984,14 +1067,21 @@
           N’envoie pas de mot de passe ni de clé API dans ce formulaire.
         </p>
 
-        <button class="btn primary form-submit" id="submitContact"
-                type="submit">
+        <button class="btn primary form-submit" type="submit">
           Envoyer le message ↗
         </button>
 
         <div id="formStatus" class="form-status"
              role="status" aria-live="polite"></div>
       </form>
+
+      <div class="whatsapp-note">
+        Tu préfères WhatsApp ?
+        <a href="https://wa.me/243890074551"
+           target="_blank" rel="noopener noreferrer">
+          Écris-nous au +243 890 074 551 ↗
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1002,11 +1092,8 @@
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
-    // Ouvrir et fermer la fenêtre de contact
+    // Ouverture et fermeture de la fenêtre de contact
     const contactModal = document.getElementById("contactModal");
-    const contactForm = document.getElementById("contactForm");
-    const formStatus = document.getElementById("formStatus");
-    const submitContact = document.getElementById("submitContact");
     const closeContact = document.getElementById("closeContact");
     const contactName = document.getElementById("contactName");
 
@@ -1017,6 +1104,7 @@
       contactModal.classList.add("open");
       contactModal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
+
       setTimeout(() => contactName.focus(), 50);
     }
 
@@ -1043,83 +1131,34 @@
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && contactModal.classList.contains("open")) {
+      if (event.key === "Escape" &&
+          contactModal.classList.contains("open")) {
         closeContactModal();
       }
     });
 
-    // Envoi du formulaire par le service FormSubmit.
-    // L'adresse de destination est celle fournie par le propriétaire.
-    contactForm.addEventListener("submit", async event => {
-      event.preventDefault();
+    // Après le retour depuis FormSubmit, afficher une confirmation informative.
+    // La présence de ce paramètre ne garantit pas à elle seule la livraison
+    // finale du message dans la boîte de réception.
+    const params = new URLSearchParams(window.location.search);
 
-      if (!contactForm.reportValidity()) return;
+    if (params.get("contact") === "sent") {
+      openContact();
 
-      const originalButtonText = submitContact.textContent;
-      const formData = new FormData(contactForm);
+      const formStatus = document.getElementById("formStatus");
+      formStatus.className = "form-status show success";
+      formStatus.textContent =
+        "FormSubmit a traité ta demande. Vérifie ta boîte de réception " +
+        "et le dossier spam pour confirmer la réception du message.";
 
-      const payload = {
-        name: String(formData.get("name") || "").trim(),
-        email: String(formData.get("email") || "").trim(),
-        subject: String(formData.get("subject") || "").trim(),
-        message: String(formData.get("message") || "").trim(),
-        _subject: "Nouveau message JOSH Labs — " +
-          String(formData.get("subject") || "Contact"),
-        _template: "table"
-      };
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname + "#contact"
+      );
+    }
 
-      submitContact.disabled = true;
-      submitContact.textContent = "Envoi en cours…";
-      formStatus.className = "form-status";
-      formStatus.textContent = "";
-
-      try {
-        const response = await fetch(
-          "https://formsubmit.co/ajax/jokal.management@gmail.com",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(payload)
-          }
-        );
-
-        let result = {};
-        try {
-          result = await response.json();
-        } catch (_) {
-          result = {};
-        }
-
-        if (!response.ok || result.success === "false" ||
-            result.success === false) {
-          throw new Error("Le service n’a pas confirmé l’envoi.");
-        }
-
-        formStatus.className = "form-status show success";
-        formStatus.textContent =
-          "Merci ! Ta demande a été transmise au service de contact. " +
-          "Si c’est le premier envoi, vérifie l’e-mail d’activation " +
-          "envoyé par FormSubmit.";
-
-        contactForm.reset();
-      } catch (error) {
-        formStatus.className = "form-status show error";
-        formStatus.textContent =
-          "L’envoi n’a pas pu être confirmé. Vérifie ta connexion, " +
-          "puis réessaie. Tu peux aussi écrire à " +
-          "jokal.management@gmail.com.";
-      } finally {
-        submitContact.disabled = false;
-        submitContact.textContent = originalButtonText;
-      }
-    });
-
-    // Traduction Google avec un sélecteur personnalisé.
-    // Si le service de traduction ne charge pas, le site reste utilisable.
-    let translateReady = false;
+    // Traduction Google avec un sélecteur personnalisé
     let pendingLanguage = null;
 
     function googleTranslateElementInit() {
@@ -1131,8 +1170,6 @@
           "en,es,pt,de,it,nl,ar,zh-CN,ja,ko,hi,sw,ru",
         autoDisplay: false
       }, "google_translate_element");
-
-      translateReady = true;
 
       if (pendingLanguage) {
         applyLanguage(pendingLanguage);
@@ -1149,7 +1186,7 @@
 
       pendingLanguage = null;
       combo.value = language;
-      combo.dispatchEvent(new Event("change", { bubbles: true }));
+      combo.dispatchEvent(new Event("change", { bubbles:true }));
     }
 
     document.getElementById("languageSelect").addEventListener(
@@ -1157,11 +1194,10 @@
         const language = event.target.value;
 
         if (language === "fr") {
-          // Retour à la langue originale
           document.cookie =
-            "googtrans=/fr/fr; path=/; max-age=0";
+            "googtrans=; path=/; max-age=0";
           document.cookie =
-            "googtrans=/fr/fr; path=/; domain=" +
+            "googtrans=; path=/; domain=" +
             location.hostname + "; max-age=0";
 
           location.reload();
@@ -1172,8 +1208,6 @@
       }
     );
 
-    // Si Google Translate n'est pas encore prêt, on attend son chargement.
-    // Le sélecteur reste visible même si le service externe est indisponible.
     window.googleTranslateElementInit = googleTranslateElementInit;
   </script>
 
@@ -1183,3 +1217,4 @@
   </script>
 </body>
 </html>
+```
